@@ -39,6 +39,8 @@ public class HistroyDayUtils {
                 context = Utils.json(json,Context.class);
                 if ("success".equals(context.getReason())){
                     LOGGER.info("获取历史今天数据::{}",context.getReason());
+                }else if("超过每日可允许请求次数!".equals(context.getReason())){
+                    LOGGER.info("历史今天查询结果::{}",context.getReason());
                 }
             }
         } catch (Exception e) {
