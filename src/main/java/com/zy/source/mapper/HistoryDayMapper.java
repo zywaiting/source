@@ -15,4 +15,11 @@ public interface HistoryDayMapper {
      * @param historyDay
      */
     void insterFindAll(HistoryDay historyDay);
+
+    /**
+     * 查询是否存在此数据
+     * @param historyDay
+     * @return
+     */
+    Integer findByHiatory(HistoryDay historyDay);
 }

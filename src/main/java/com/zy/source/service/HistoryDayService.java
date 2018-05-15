@@ -1,6 +1,5 @@
 package com.zy.source.service;
 
-import com.zy.source.pojo.HistoryDay;
 
 /**
  * Created by zy on 15/05/2018.
@@ -10,7 +9,8 @@ import com.zy.source.pojo.HistoryDay;
 public interface HistoryDayService {
     /**
      * 存储查询到的数据
-     * @param historyDay
+     * @param limit
      */
-    void insterFindAll(HistoryDay historyDay);
+    void insterFindAll(String limit);
+
 }

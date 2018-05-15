@@ -15,9 +15,16 @@
     <parameterMap id="HistoryDay" type="com.zy.source.pojo.HistoryDay"/>
 
     <sql id="Base_Column_List">
-        id, e_id, content, picNo, url, title, pic_title, pic_id
+        e_id, content, picNo, url, title, pic_title, pic_id
     </sql>
 
+    <insert id="insterFindAll" parameterType="HistoryDay">
+        INSERT INTO history_day (e_id, content, picNo, url, title, pic_title, pic_id) VALUES (#{eId}, #{content}, #{picNo}, #{url}, #{title}, #{picTitle}, #{picId})
+    </insert>
+
+    <select id="findByHiatory" parameterType="HistoryDay" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM history_day WHERE content = #{content}
+    </select>
 
 
 </mapper>
