@@ -5,9 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 城市 DAO 接口类
+ * 笑话大全接口
  *
- * Created by bysocket on 07/02/2017.
+ * Created by zy on 15/05/2018.
  */
 @Mapper
 public interface JokeMapper {

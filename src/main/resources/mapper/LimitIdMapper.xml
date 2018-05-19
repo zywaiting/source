@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.source.mapper.LimitIdMapper">
+
+
+    <select id="findJokeMinId" resultType="java.lang.String">
+        SELECT limit_id FROM limit_id WHERE name = 'joke'
+    </select>
+
+    <select id="findHistoryDayMinId" resultType="java.lang.String">
+        SELECT limit_id FROM limit_id WHERE name = 'history_day'
+    </select>
+
+    <update id="updateHistoryDayMinId" parameterType="java.lang.Integer">
+        UPDATE limit_id SET limit_id = #{limitId} WHERE name = 'history_day';
+    </update>
+
+    <update id="updataJokeMinId" parameterType="java.lang.Integer">
+        UPDATE limit_id SET limit_id = #{limitId} WHERE name = 'joke';
+    </update>
+
+</mapper>
