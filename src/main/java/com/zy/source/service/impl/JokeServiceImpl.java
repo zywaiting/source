@@ -9,6 +9,7 @@ import com.zy.source.utils.tools.JokeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * Created by zy on 14/05/2018
  */
 @Service
+@EnableScheduling
 public class JokeServiceImpl implements JokeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JokeServiceImpl.class);
@@ -30,7 +32,7 @@ public class JokeServiceImpl implements JokeService {
     @Autowired
     private ScheduleMapper scheduleMapper;
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0 50 0 * * ?")
     public void start(){
         if ("true".equals(scheduleMapper.findHistoryDaySchedule())){
             LOGGER.info("获取笑话大全定时开始！");
@@ -45,7 +47,7 @@ public class JokeServiceImpl implements JokeService {
             for (int i = Integer.parseInt(limit); i < Integer.parseInt(limit) + 10000; i++) {
                 JokeUtils.Context context = JokeUtils.gain(String.valueOf(i));
                 if ("超过每日可允许请求次数!".equals(context.getReason())) {
-                    int num = limitIdMapper.updateHistoryDayMinId(count);
+                    int num = limitIdMapper.updataJokeMinId(count);
                     if (num > 0) {
                         LOGGER.info("更讯数据库成功");
                     } else {
