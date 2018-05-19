@@ -36,7 +36,7 @@ public class JokeServiceImpl implements JokeService {
     public void start(){
         if ("true".equals(scheduleMapper.findHistoryDaySchedule())){
             LOGGER.info("获取笑话大全定时开始！");
-            insterJoke((limitIdMapper.findHistoryDayMinId()));
+            insterJoke((limitIdMapper.findJokeMinId()));
         }
     }
 
