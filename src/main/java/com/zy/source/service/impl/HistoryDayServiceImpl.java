@@ -37,7 +37,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
     private ScheduleMapper scheduleMapper;
 
 
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void start(){
         if ("true".equals(scheduleMapper.findHistoryDaySchedule())){
             LOGGER.info("获取历史今天定时开始！");
