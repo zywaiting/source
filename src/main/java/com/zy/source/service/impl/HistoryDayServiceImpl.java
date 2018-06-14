@@ -38,7 +38,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
     private ScheduleMapper scheduleMapper;
 
 
-    @Scheduled(cron = "0 35 14 * * ?")
+    @Scheduled(cron = "0 0 15 * * ?")
     public void start(){
         if ("true".equals(scheduleMapper.findHistoryDaySchedule())){
             LOGGER.info("获取历史今天定时开始！");
@@ -59,7 +59,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                         EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
                                 "1573240324@qq.com",
                                 "历史今天更新",
-                                "zy：您好！<br>数据库更新成功，在增加" + count + "！<br>勿忘初心！");
+                                "zy：您好！<br>数据库更新成功，在增加" + (count - Integer.parseInt(limit)) + "！<br>勿忘初心！");
                     } else {
                         LOGGER.info("更讯数据库失败");
                         EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
@@ -106,7 +106,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                     EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
                             "1573240324@qq.com",
                             "历史今天更新",
-                            "zy：您好！<br>获取数据异常，数据库更新成功，在增加" + count + "！<br>请检查代码！勿忘初心！");
+                            "zy：您好！<br>获取数据异常，数据库更新成功，在增加" + (count - Integer.parseInt(limit)) + "！<br>请检查代码！勿忘初心！");
                 } catch (Exception e1) {
                     LOGGER.info("邮件发送失败");
                 }
