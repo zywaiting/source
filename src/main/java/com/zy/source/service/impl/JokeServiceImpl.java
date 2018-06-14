@@ -33,7 +33,7 @@ public class JokeServiceImpl implements JokeService {
     @Autowired
     private ScheduleMapper scheduleMapper;
 
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 0 2 * * ?")
     public void start(){
         if ("true".equals(scheduleMapper.findHistoryDaySchedule())){
             LOGGER.info("获取笑话大全定时开始！");
