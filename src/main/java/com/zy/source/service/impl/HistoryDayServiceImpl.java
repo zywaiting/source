@@ -5,6 +5,7 @@ import com.zy.source.mapper.LimitIdMapper;
 import com.zy.source.mapper.ScheduleMapper;
 import com.zy.source.pojo.HistoryDay;
 import com.zy.source.service.HistoryDayService;
+import com.zy.source.utils.email.EmailUtils;
 import com.zy.source.utils.tools.HistroyDayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,8 +56,16 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                     int num = limitIdMapper.updateHistoryDayMinId(count);
                     if (num > 0) {
                         LOGGER.info("更讯数据库成功");
+                        EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
+                                "1573240324@qq.com",
+                                "历史今天更新",
+                                "zy：您好！<br>数据库更新成功，在增加" + count + "！<br>勿忘初心！");
                     } else {
                         LOGGER.info("更讯数据库失败");
+                        EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
+                                "1573240324@qq.com",
+                                "历史今天更新",
+                                "zy：您好！<br>更讯数据库失败，请检查代码！勿忘初心！");
                     }
                     break;
                 } else {
@@ -90,6 +99,28 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                 }
             }
         } catch (Exception e){
+            int num = limitIdMapper.updateHistoryDayMinId(count);
+            if (num > 0) {
+                LOGGER.info("更讯数据库成功");
+                try {
+                    EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
+                            "1573240324@qq.com",
+                            "历史今天更新",
+                            "zy：您好！<br>获取数据异常，数据库更新成功，在增加" + count + "！<br>请检查代码！勿忘初心！");
+                } catch (Exception e1) {
+                    LOGGER.info("邮件发送失败");
+                }
+            } else {
+                LOGGER.info("更讯数据库失败");
+                try {
+                    EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
+                            "1573240324@qq.com",
+                            "历史今天更新",
+                            "zy：您好！<br>获取数据异常，更讯数据库失败，请检查代码！勿忘初心！");
+                } catch (Exception e1) {
+                    LOGGER.info("邮件发送失败");
+                }
+            }
             LOGGER.warn("存储历史今天异常::{}",e.getMessage());
         }
     }
