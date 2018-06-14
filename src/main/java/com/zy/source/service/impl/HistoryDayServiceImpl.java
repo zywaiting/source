@@ -59,7 +59,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                         EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
                                 "1573240324@qq.com",
                                 "历史今天更新",
-                                "zy：您好！<br>数据库更新成功，在增加" + (count - Integer.parseInt(limit)) + "！<br>勿忘初心！");
+                                "zy：您好！<br>数据库更新成功，增加" + (count - Integer.parseInt(limit)) + "！<br>勿忘初心！");
                     } else {
                         LOGGER.info("更讯数据库失败");
                         EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
@@ -106,7 +106,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                     EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
                             "1573240324@qq.com",
                             "历史今天更新",
-                            "zy：您好！<br>获取数据异常，数据库更新成功，在增加" + (count - Integer.parseInt(limit)) + "！<br>请检查代码！勿忘初心！");
+                            "zy：您好！<br>获取数据异常，数据库更新成功，增加" + (count - Integer.parseInt(limit)) + "！<br>请检查代码！勿忘初心！");
                 } catch (Exception e1) {
                     LOGGER.info("邮件发送失败");
                 }
