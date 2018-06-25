@@ -48,6 +48,7 @@ public class HistoryDayServiceImpl implements HistoryDayService{
 
     @Override
     public void insterFindAll(String limit) {
+        Integer sum1 = historyDayMapper.count();
         int count = Integer.parseInt(limit);
         try {
             for (int i = Integer.parseInt(limit); i < Integer.parseInt(limit) + 10000; i++) {
@@ -56,10 +57,11 @@ public class HistoryDayServiceImpl implements HistoryDayService{
                     int num = limitIdMapper.updateHistoryDayMinId(count);
                     if (num > 0) {
                         LOGGER.info("更讯数据库成功");
+                        Integer sum2 = historyDayMapper.count();
                         EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
                                 "1573240324@qq.com",
                                 "历史今天更新",
-                                "zy：您好！<br>数据库更新成功，增加" + (count - Integer.parseInt(limit)) + "！<br>勿忘初心！");
+                                "zy：您好！<br>数据库更新成功，增加" + (sum2 - sum1) + "！<br>勿忘初心！");
                     } else {
                         LOGGER.info("更讯数据库失败");
                         EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
@@ -102,11 +104,12 @@ public class HistoryDayServiceImpl implements HistoryDayService{
             int num = limitIdMapper.updateHistoryDayMinId(count);
             if (num > 0) {
                 LOGGER.info("更讯数据库成功");
+                Integer sum2 = historyDayMapper.count();
                 try {
                     EmailUtils.sendMail("2012602020@qq.com", "2012602020@qq.com", "dmsegigprnfafjcc",
                             "1573240324@qq.com",
                             "历史今天更新",
-                            "zy：您好！<br>获取数据异常，数据库更新成功，增加" + (count - Integer.parseInt(limit)) + "！<br>请检查代码！勿忘初心！");
+                            "zy：您好！<br>获取数据异常，数据库更新成功，增加" + (sum2 - sum1) + "！<br>请检查代码！勿忘初心！");
                 } catch (Exception e1) {
                     LOGGER.info("邮件发送失败");
                 }

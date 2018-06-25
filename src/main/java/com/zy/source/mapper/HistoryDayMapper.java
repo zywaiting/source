@@ -22,4 +22,10 @@ public interface HistoryDayMapper {
      * @return
      */
     Integer findByHiatory(HistoryDay historyDay);
+
+    /**
+     * 查询数量
+     * @return
+     */
+    Integer count();
 }
